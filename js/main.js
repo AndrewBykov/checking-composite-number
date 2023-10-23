@@ -5,15 +5,28 @@ const res = document.querySelector('#result')
 btn.addEventListener('click', answearText)
 
 function checkingCompositeNumber(input) {
-    const str = input.value
+    let str = input.value
+    // Numbers
     const pattern = '0123456789876543210';
+    // Letters
+    const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+    // Letters to reverse
+    const uppercaseLettersReverse = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').reverse('').join('')
+    const lowercaseLettersReverse = 'abcdefghijklmnopqrstuvwxyz'.split('').reverse('').join('')
+    // Folding all letters
+    const upperAllLowerAll = uppercaseLetters + uppercaseLettersReverse + lowercaseLetters + lowercaseLettersReverse
+
+    str = str.replace(/[\s\.\-\,]/g, "")
 
     if(str === '') {
       return 'У вас пустое поле ввода'
     } else if (pattern.includes(str)) {
       return 'Данное составное число соответсвует'
+    } else if (upperAllLowerAll.includes(str)) {
+      return 'Данные составные буквы соответсвуют'
     } else {
-      return 'Данное составное число не соответсвует'
+      return 'Ой, кажется что-то вы пропустили'
     }
 
 
@@ -23,8 +36,3 @@ function answearText() {
 
     res.innerHTML = result
 }
-
-
-
-
-
